@@ -62,6 +62,27 @@ public class LinkedList {
         }
     }
 
+    int kthToLast(Node n, int d) {
+        if (n == null) {
+            return 0;
+        }
+        int k = kthToLast(n.next, d) + 1;
+
+        if (k == d) {
+            System.out.println("Element at position " + d + " is " + n.data);
+        }
+        return k;
+    }
+
+    void deleteNode (Node n) {
+        if (n == null) {
+            return;
+        }
+        n.data = n.next.data;
+        n.next = n.next.next;
+
+    }
+
     void printLL() {
         System.out.print("Linked List: ");
         Node n = head;
@@ -89,7 +110,12 @@ public class LinkedList {
         list.removeDuplicates();
         list.printLL();
 
-
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(24);
+        list.kthToLast(list.head,4);
+        list.deleteNode(list.head.next.next.next);
+        list.printLL();
 
 
     }
